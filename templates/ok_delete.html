@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+<h3 class="ok_message">Слово {{ word }} было удалено.</h3>
+<form action="/delete" method="post" class="add_data_form">
+        <input type="text" name="word" class="word_input" placeholder="Введите английское слово" required
+               pattern="^[a-zA-Z ]+$"><br>
+        <input type="text" name="translate" class="translate_input" placeholder="Введите перевод слова на русском"
+               required
+               pattern="^[а-яёА-ЁЯ]+$"><br>
+        <input type="submit" value="Создать" class="button button_create">
+    </form>
+{% endblock %}
+
+

@@ -1,0 +1,217 @@
+.all_notes_form,
+.add_data_form,
+.update_form,
+.delete_form{
+padding: 10px 0;
+text-align: center;
+margin: 0 auto 5px;
+width: 60%;
+border: 2px skyblue dashed;
+}
+
+.logo_h1{
+width: 40%;
+margin: 0 auto;
+font-size: 80px;
+text-align: center;
+color: skyblue;
+margin-top: 50px;
+border: 5px solid yellow;
+border-bottom-left-radius: 200px;
+border-top-right-radius: 200px;
+text-shadow: 10px 3px 5px grey;
+box-shadow: -5px 5px 15px lightgreen;
+margin-bottom: 80px;
+}
+
+.random_note{
+width: 40%;
+margin: 0 auto;
+font-size: 50px;
+text-align: center;
+color: lightgreen;
+margin-top: 50px;
+
+margin-bottom: 80px;
+}
+
+
+h3{
+color: grey;
+font-size: 25px;
+}
+
+.word_input{
+width: 80%;
+height: 30px;
+margin-bottom: 20px;
+padding-left: 20px;
+}
+
+input[type="text"]::placeholder{
+font-size: 14px;
+color: darkblue;
+font-style: italic;
+}
+
+.translate_input{
+width: 80%;
+height: 30px;
+padding-left: 20px;
+}
+
+.button{
+margin-top: 10px;
+height: 30px;
+width: 160px;
+color: green;
+font-size: 15px;
+}
+
+
+p{
+font-style: italic;
+color: skyblue;
+font-size: 22px;
+margin: 5px auto;
+width: 30%;
+text-align: center;
+
+}
+
+.container{
+width:60%;
+margin: 0 auto;
+text-align: right;
+box-shadow: 15px -6px 8px skyblue;
+
+}
+
+
+.info{
+display: flex;
+margin-top: 80px;
+border: 1px red solid;
+box-shadow: -8px 5px 10px red;
+align-items: center;
+
+}
+
+.logo{
+margin: 40px auto;
+width: 25%;
+border-radius: 200px;
+padding: 0 20px 20px;
+box-shadow: 0px 7px 5px yellow;
+align-items: baseline;
+
+
+}
+
+
+.description{
+width: 60%;
+font-size: 50px;
+margin: 0 auto;
+padding: 30px 0;
+color: grey;
+text-align: right;
+
+
+
+}
+
+.menu{
+display: inline;
+display: flex;
+width:60%;
+margin: 0 auto;
+justify-content: space-between;
+margin-bottom: 20px;
+}
+
+.menu a{
+padding: 30px;
+text-decoration: none;
+font-size: 25px;
+color: green;
+text-transform: uppercase;
+font-style: italic;
+
+}
+
+.menu a:hover{
+outline: 3px grey solid;
+
+}
+
+.alert_message{
+width:60%;
+margin: 0 auto;
+padding: 10px;
+background-color: #f44336;
+color: white;
+}
+
+.ok_message{
+margin: 0 auto;
+width:60%;
+padding: 10px;
+background-color: #4CAF50;
+color: white;
+}
+
+.ok_update{
+margin: 0 auto;
+width: 60%;
+padding: 10px;
+background-color: yellow;
+color: black;
+}
+
+.not_found_update{
+padding: 10px;
+background-color: #f44336;
+color: black;
+}
+
+.delete_ok{
+padding: 10px;
+background-color: #4CAF50;
+color: black;
+font-transform: capitalise;
+}
+.delete_not_found{
+padding: 10px;
+background-color: #f44336;
+color: white;
+font-transform: capitalise;
+}
+
+.count_notes{
+width: 10%;
+height: 20px;
+margin-bottom: 20px;
+padding-left: 20px;
+}
+
+
+
+* { margin:0; padding:0; }
+body { font-family: sans-serif;}
+#content { margin: 50px; }
+a { text-decoration: none; }
+
+.expandable {
+  background: #fff;
+  overflow: hidden;
+  color: #000;
+  line-height: 50px;
+
+  transition: all .5s ease-in-out;
+  height: 0;
+ }
+
+ .expandable:target {
+  height: 50px;
+}
