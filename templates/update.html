@@ -2,14 +2,32 @@
 
 
 {% block content %}
+
+<div class="update_word">
+<div class="empty_block"></div>
+
+{% if words and word_upd %}
+        <h3 class="ok_update">У слова {{ words }} был изменен перевод на {{ word_upd }}</h3>
+
+
+
+{% elif integrity_error %}
+
+
+       <h3 class="alert_message">Слово {{ words }} не существует в базе</h3>
+
+
+{% endif %}
+
+
 <form action="/update" method="post" class="update_form">
         <input type="text" name="word" class="word_input"
                placeholder="Введите английское слово для обновления его перевода" required
-               pattern="^[a-zA-Z ]+$"><br>
+               pattern="^[a-zA-Z .!]+$"><br>
         <input type="text" name="translate" class="translate_input" placeholder="Введите новый перевод слова на русском"
                required
-               pattern="^[а-яА-ЯёЁ]+$"><br>
+               pattern="^[а-яА-ЯёЁ .!]+$"><br>
         <input type="submit" value="Обновить" class="button button_update">
     </form>
-
+</div>
 {% endblock %}

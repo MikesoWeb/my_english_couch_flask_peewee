@@ -2,21 +2,41 @@
 
 
 {% block content %}
-<form action="/count_notes" method="post" class="all_notes_form">
-    <h3>Сколько вывести записей? </h3>
-    <input type="text" name="count" required pattern="^[0-9]+$" class="count_notes"><br>
-    <input type="submit" value="Показать" class="button button_all_notes">
-</form>
-<form action="/all_notes" method="get" class="all_notes_form">
+<!--    <div class="empty_block"></div>-->
 
-    <input type="submit" value="Все записи" class="button">
-</form>
+<div class="show_notes">
 
-<form action="/random_note" method="get" class="all_notes_form">
 
-    <input type="submit" value="Случайная запись" class="button">
-</form>
+    <div class="card">
+        <form action="/count_notes" method="post" class="all_notes_form">
+
+            <input type="text" name="count" required pattern="^[0-9]+$" class="count_notes"><br>
+            <input type="submit" value="Кол-во записей" class="button">
+
+        </form>
+    </div>
+
+    <div class="card">
+        <form action="/all_notes" method="get" class="all_notes_form">
+            <input type="submit" value="Все записи" class="button">
+        </form>
+
+    </div>
+
+    <div class="card">
+        <form action="/random_note" method="get" class="all_notes_form">
+
+            <input type="submit" value="Случайная запись" class="button">
+        </form>
+
+<!--        <div id="content">-->
+
+<!--            <div class="expandable" id="nav">-->
+<!--                <p>{{ random_query.translate.capitalize() }}</p>-->
+<!--            </div>-->
+
+<!--        </div>-->
+    </div>
+</div>
 
 {% endblock %}
-
-

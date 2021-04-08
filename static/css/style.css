@@ -2,17 +2,34 @@
 .add_data_form,
 .update_form,
 .delete_form{
-padding: 10px 0;
 text-align: center;
 margin: 0 auto 5px;
 width: 60%;
-border: 2px skyblue dashed;
+}
+
+.wrap {
+    overflow: hidden;
+    display: grid;
+    grid-template-areas: "header", "content", "footer";
+    grid-template-rows: auto 1fr auto;
+    min-height: 100vh;
+}
+
+.header{
+display:flex;
+
+}
+
+.empty_block{
+margin: 0 auto;
+height: 50px;
+
 }
 
 .logo_h1{
-width: 40%;
+width: 30%;
 margin: 0 auto;
-font-size: 80px;
+font-size: 50px;
 text-align: center;
 color: skyblue;
 margin-top: 50px;
@@ -21,25 +38,19 @@ border-bottom-left-radius: 200px;
 border-top-right-radius: 200px;
 text-shadow: 10px 3px 5px grey;
 box-shadow: -5px 5px 15px lightgreen;
-margin-bottom: 80px;
+margin-bottom: 50px;
 }
 
 .random_note{
 width: 40%;
 margin: 0 auto;
-font-size: 50px;
+font-size: 30px;
 text-align: center;
 color: lightgreen;
 margin-top: 50px;
-
-margin-bottom: 80px;
+margin-bottom: 10px;
 }
 
-
-h3{
-color: grey;
-font-size: 25px;
-}
 
 .word_input{
 width: 80%;
@@ -63,101 +74,141 @@ padding-left: 20px;
 .button{
 margin-top: 10px;
 height: 30px;
-width: 160px;
+width: 150px;
 color: green;
 font-size: 15px;
-}
 
+
+}
 
 p{
 font-style: italic;
 color: skyblue;
-font-size: 22px;
+font-size: 20px;
 margin: 5px auto;
-width: 30%;
+width: 100%;
 text-align: center;
-
 }
 
-.container{
-width:60%;
+
+.content{
+width:100%;
 margin: 0 auto;
 text-align: right;
 box-shadow: 15px -6px 8px skyblue;
-
 }
 
 
 .info{
 display: flex;
-margin-top: 80px;
-border: 1px red solid;
-box-shadow: -8px 5px 10px red;
+margin: 40px auto;
+height: 300px;
+border: 3px red double;
+box-shadow: -8px 5px 10px pink;
+box-shadow: 15px -6px 8px skyblue;
 align-items: center;
 
 }
 
+
 .logo{
 margin: 40px auto;
-width: 25%;
+width: 20%;
 border-radius: 200px;
 padding: 0 20px 20px;
 box-shadow: 0px 7px 5px yellow;
 align-items: baseline;
 
-
 }
 
 
 .description{
-width: 60%;
-font-size: 50px;
+width: 50%;
+font-size: 30px;
 margin: 0 auto;
 padding: 30px 0;
 color: grey;
 text-align: right;
 
-
-
 }
+
 
 .menu{
-display: inline;
 display: flex;
-width:60%;
-margin: 0 auto;
+width:50%;
+margin: 20px auto;
 justify-content: space-between;
-margin-bottom: 20px;
+align-items: center;
+
 }
 
+
 .menu a{
-padding: 30px;
+padding: 10px;
+height:30px;
 text-decoration: none;
-font-size: 25px;
+font-size: 17px;
 color: green;
 text-transform: uppercase;
 font-style: italic;
 
 }
 
+
+
 .menu a:hover{
-outline: 3px grey solid;
+outline: 1px grey solid;
 
 }
+
+
+.show_notes{
+display: flex;
+margin: 0 auto;
+justify-content: space-around;
+width: 60%;
+border: green 1px solid;
+padding-top: 40px;
+align-self: baseline;
+
+}
+
 
 .alert_message{
-width:60%;
+width:50%;
+text-align: center;
 margin: 0 auto;
-padding: 10px;
 background-color: #f44336;
 color: white;
+margin-bottom:10px;
+
+
 }
 
-.ok_message{
+.card{
+width:100%;
+margin-bottom: 100px;
+align-self: flex-end;
+
+
+}
+
+
+
+input[name="count"]{
+width: 30px;
+height:20px;
+color: red;
+margin-bottom: -20px;
+
+}
+
+.allow_message{
 margin: 0 auto;
-width:60%;
-padding: 10px;
-background-color: #4CAF50;
+text-align: center;
+width: 50%;
+padding: 0px;
+background-color: green;
 color: white;
 }
 
@@ -167,6 +218,8 @@ width: 60%;
 padding: 10px;
 background-color: yellow;
 color: black;
+text-align: center;
+
 }
 
 .not_found_update{
@@ -175,26 +228,16 @@ background-color: #f44336;
 color: black;
 }
 
-.delete_ok{
-padding: 10px;
-background-color: #4CAF50;
-color: black;
-font-transform: capitalise;
-}
-.delete_not_found{
-padding: 10px;
-background-color: #f44336;
-color: white;
-font-transform: capitalise;
-}
+
 
 .count_notes{
-width: 10%;
-height: 20px;
+width: 30px;
+height: 30px;
 margin-bottom: 20px;
 padding-left: 20px;
-}
 
+
+}
 
 
 * { margin:0; padding:0; }
@@ -203,15 +246,28 @@ body { font-family: sans-serif;}
 a { text-decoration: none; }
 
 .expandable {
-  background: #fff;
-  overflow: hidden;
-  color: #000;
-  line-height: 50px;
-
-  transition: all .5s ease-in-out;
-  height: 0;
+background: #fff;
+overflow: hidden;
+color: #000;
+line-height: 50px;
+transition: all .5s ease-in-out;
+height: 0;
  }
 
  .expandable:target {
   height: 50px;
+}
+
+
+.footer {
+margin-top: 20px;
+height: 120px;
+display: flex;
+background-color: antiquewhite;
+align-items: center;
+justify-content: center;
+text-align: center;
+font-size: 15px;
+font-family: monospace;
+
 }

@@ -3,10 +3,13 @@
 
 {% block content %}
 
+<ol>
 {% for row in query_all %}
 
-    <p>{{ row.word }} - {{ row.translate }}</p>
+    <li><p>{{ row.word }} - {{ row.translate }}</p></li>
+
 {% endfor %}
+</ol>
 
 {% endblock %}
 

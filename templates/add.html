@@ -2,12 +2,31 @@
 
 
 {% block content %}
+
+<div class="add_word">
+<div class="empty_block"></div>
+
+{% if word and translate %}
+        <p class="allow_message">Слово {{ word }} и его перевод {{ translate }} были добавлены.</p>
+
+
+{% elif integrity_error %}
+
+
+        <p class="alert_message">Слово {{ word }} уже есть в базе.</p>
+
+{% endif %}
+
+
 <form action="/add" method="post" class="add_data_form">
         <input type="text" name="word" class="word_input" placeholder="Введите английское слово" required
-               pattern="^[a-zA-Z ]+$" autofocus><br>
+               pattern="^[a-zA-Z,.?!`- ]+$" autofocus><br>
         <input type="text" name="translate" class="translate_input" placeholder="Введите перевод слова на русском"
                required
-               pattern="^[а-яёА-ЁЯ]+$"><br>
+               pattern="^[а-яёА-ЁЯ,.?! ]+$"><br>
         <input type="submit" value="Создать" class="button button_create">
+
     </form>
+
+</div>
 {% endblock %}

@@ -2,9 +2,24 @@
 
 
 {% block content %}
+
+<div class="del_form">
+<div class="empty_block"></div>
+
+{% if del_word %}
+
+    <h3 class="allow_message">Слово {{ word }} было удалено.</h3>
+
+{% elif not del_word %}
+
+    <h3 class="alert_message">Слово {{ word }} отсутствует или не набрано</h3>
+
+{% endif %}
+
 <form action="/delete" method="post" class="delete_form">
         <input type="text" name="word" class="word_input" placeholder="Введите слово для удаления" required
                pattern="^[a-zA-Z ]+$"><br>
         <input type="submit" value="Удалить" class="button button_delete">
     </form>
+    </div>
 {% endblock %}

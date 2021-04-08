@@ -2,12 +2,15 @@
 
 
 {% block content %}
-<br><br>
-{% for row in query_count %}
+<div class="count_note">
+    <div class="empty_block"></div>
 
-    <p>{{ row.word }} - {{ row.translate }}</p>
-{% endfor %}
+    {% for row in query_count %}
 
+        <p>{{ row.word }} - {{ row.translate }}</p>
+
+    {% endfor %}
+</div>
 {% endblock %}
 
 
