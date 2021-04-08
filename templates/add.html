@@ -6,16 +6,12 @@
 <div class="add_word">
 <div class="empty_block"></div>
 
-{% if word and translate %}
-        <p class="allow_message">Слово {{ word }} и его перевод {{ translate }} были добавлены.</p>
+{% for msg in get_flashed_messages() %}
+
+    <div class="allow_message">{{ msg }}</div>
 
 
-{% elif integrity_error %}
-
-
-        <p class="alert_message">Слово {{ word }} уже есть в базе.</p>
-
-{% endif %}
+{% endfor %}
 
 
 <form action="/add" method="post" class="add_data_form">

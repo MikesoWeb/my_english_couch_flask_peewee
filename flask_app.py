@@ -1,8 +1,10 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, flash
 from peewee import IntegrityError, fn
 from models import English
 
 app = Flask(__name__)
+
+app.config['SECRET_KEY'] = "sdghytruyeetreyrty57657iudrghfjhkgj"
 
 
 @app.route('/')
@@ -22,13 +24,16 @@ def input_data():
         translate = request.form['translate']
         try:
             if English.create(word=word, translate=translate):
-                return render_template('add.html', word=word, translate=translate)
+                flash(f'Слово {word} и его перевод {translate} добавлены')
 
         except IntegrityError:
-            return render_template('add.html', word=word, integrity_error=IntegrityError)
-
+            flash(f'Слово {word} в базе существует!')
+        return render_template('add.html')
     else:
-        return redirect(url_for('index'))
+
+        return redirect(url_for('add_page'))
+
+
 
 
 @app.route('/update_page')
@@ -44,9 +49,10 @@ def update_data():
             word_upd = request.form['translate']
             q = English.update(translate=word_upd).where(English.word == words)
             q.execute()
-            return render_template('update.html', words=words, word_upd=word_upd)
+            flash(f'У слова {words} был обновлен перевод на {word_upd}!')
         else:
-            return render_template('update.html', words=words)
+            flash(f'Слово {words} не найдено в базе!')
+    return render_template('update.html')
 
 
 @app.route('/delete_page')
@@ -54,16 +60,18 @@ def delete():
     return render_template('delete.html')
 
 
-@app.route('/delete', methods=['post'])
+@app.route('/delete', methods=['post', 'get'])
 def delete_data():
     if request.method == 'POST':
         word = request.form['word']
         del_word = English.select().where(English.word == word)
         if not del_word:
-            return render_template('delete.html', word=word, del_word=del_word)
+            flash(f'Слово {word} в базе не найдено!')
         else:
             English.delete_by_id(del_word)
-            return render_template('delete.html', word=word, del_word=del_word)
+            flash(f'Слово {word} удалено!')
+
+    return render_template('delete.html')
 
 
 @app.route('/show')
