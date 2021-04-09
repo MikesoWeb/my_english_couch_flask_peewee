@@ -2,25 +2,24 @@
 
 
 {% block content %}
-<br><br>
 
-<center><h1 class="random_note">{{ random_query.word.capitalize() }}</h1></center>
-<br>
-<br>
+<div class="random_note">
+<h1 class="random_word">{{ random_query.word.capitalize() }}</h1>
+
 <form action="/random_note" method="get" class="all_notes_form">
 
     <input type="submit" value="Случайная запись" class="button">
 </form>
-<br>
-<center>
+
+
 <div id="content">
-    <a href="#nav"><h4><span>Забыли перевод?</span></h4></a>
+    <a href="#nav"><h5>Забыли перевод?</h5></a>
   <div class="expandable" id="nav">
-      <h2><p>{{ random_query.translate.capitalize() }}</p></h2>
+      <p>{{ random_query.translate.capitalize() }}</p>
   </div>
 
 </div>
-
+</div>
 {% endblock %}
 
 

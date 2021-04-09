@@ -4,16 +4,15 @@
 {% block content %}
 
 <div class="update_word">
-<div class="empty_block"></div>
+    <div class="empty_block"></div>
 
-{% for msg in get_flashed_messages() %}
+    {% for cat, msg in get_flashed_messages(True) %}
 
-    <div class="allow_message">{{ msg }}</div>
+    <div class="flash {{ cat }}">{{ msg|safe }}</div>
 
 
-{% endfor %}
-
-<form action="/update" method="post" class="update_form">
+    {% endfor %}
+    <form action="/update" method="post" class="update_form">
         <input type="text" name="word" class="word_input"
                placeholder="Введите английское слово для обновления его перевода" required
                pattern="^[a-zA-Z .!`?]+$"><br>

@@ -1,8 +1,7 @@
-from datetime import datetime
-
-from peewee import Model, CharField, PrimaryKeyField, SqliteDatabase, DateField
+from peewee import Model, CharField, PrimaryKeyField, SqliteDatabase
 
 dt = SqliteDatabase('db_1.db')
+# dt = SqliteDatabase('db_test.db')
 
 
 class English(Model):
@@ -13,7 +12,7 @@ class English(Model):
     class Meta:
         database = dt
         db_table = 'english'
-        order_by = 'word'
+        order_by = '-word'
 
 
 English.create_table()

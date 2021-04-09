@@ -2,9 +2,10 @@
 
 
 {% block content %}
-
+<center><h1>{{ count_words }} </h1></center>
 <ol>
-{% for row in query_all %}
+{% for row in query_all[::-1] %}
+
 
     <li><p>{{ row.word }} - {{ row.translate }}</p></li>
 

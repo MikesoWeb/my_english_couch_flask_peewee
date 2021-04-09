@@ -1,47 +1,51 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
 from peewee import IntegrityError, fn
 from models import English
+from config_data import DEBUG, SECRET_KEY
 
 app = Flask(__name__)
-
-app.config['SECRET_KEY'] = "sdghytruyeetreyrty57657iudrghfjhkgj"
+app.config.from_object(__name__)
 
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    count_words = len(English.select())
+    return render_template('index.html', count_words=count_words)
 
 
-@app.route('/add_page')
+# ADD
+@app.route('/add_page', methods=['get'])
 def add():
-    return render_template('add.html')
+    count_words = len(English.select())
+    return render_template('add.html', count_words=count_words)
 
 
-@app.route('/add', methods=['POST'])
+@app.route('/add', methods=['POST', 'GET'])
 def input_data():
     if request.method == 'POST':
         word = request.form['word']
         translate = request.form['translate']
         try:
             if English.create(word=word, translate=translate):
-                flash(f'Слово {word} и его перевод {translate} добавлены')
+                flash(f'Слово <b>{word}</b> и его перевод <b>{translate}</b> добавлены', category='success')
 
         except IntegrityError:
-            flash(f'Слово {word} в базе существует!')
-        return render_template('add.html')
-    else:
+            flash(f'Слово <b>{word}</b> в базе существует!', category='attention')
 
+        return render_template('add.html')
+
+    else:
         return redirect(url_for('add_page'))
 
 
-
-
+# UPDATE
 @app.route('/update_page')
 def update():
-    return render_template('update.html')
+    count_words = len(English.select())
+    return render_template('update.html', count_words=count_words)
 
 
-@app.route('/update', methods=['post'])
+@app.route('/update', methods=['post', 'get'])
 def update_data():
     if request.method == 'POST':
         words = request.form['word']
@@ -49,15 +53,20 @@ def update_data():
             word_upd = request.form['translate']
             q = English.update(translate=word_upd).where(English.word == words)
             q.execute()
-            flash(f'У слова {words} был обновлен перевод на {word_upd}!')
+            flash(f'У слова <b>{words}</b> был обновлен перевод на <b>{word_upd}</b>!', category='attention')
         else:
-            flash(f'Слово {words} не найдено в базе!')
-    return render_template('update.html')
+            flash(f'Слово <b>{words}</b> не найдено в базе!', category='error')
+
+        return render_template('update.html')
+
+    # else:
+    #     return redirect(url_for('update_page'))
 
 
 @app.route('/delete_page')
 def delete():
-    return render_template('delete.html')
+    count_words = len(English.select())
+    return render_template('delete.html', count_words=count_words)
 
 
 @app.route('/delete', methods=['post', 'get'])
@@ -66,26 +75,26 @@ def delete_data():
         word = request.form['word']
         del_word = English.select().where(English.word == word)
         if not del_word:
-            flash(f'Слово {word} в базе не найдено!')
+            flash(f'Слово <b>{word}</b> в базе не найдено!', category='error')
         else:
             English.delete_by_id(del_word)
-            flash(f'Слово {word} удалено!')
+            flash(f'Слово <b>{word}</b> удалено!', category='success')
 
     return render_template('delete.html')
 
 
 @app.route('/show')
 def all_notes_page():
-    random_query = English.select().order_by(fn.Random())
-    one_obj = random_query.get()
-    return render_template('show.html', random_query=one_obj)
+    count_words = len(English.select())
+    return render_template('show.html', count_words=count_words)
 
 
 @app.route('/random_note')
 def random_note():
+    count_words = len(English.select())
     random_query = English.select().order_by(fn.Random())
     one_obj = random_query.get()
-    return render_template('random_note.html', random_query=one_obj)
+    return render_template('random_note.html', random_query=one_obj, count_words=count_words)
 
 
 @app.route('/all_notes', methods=['get'])
@@ -104,4 +113,5 @@ def count_notes():
 
 
 if __name__ == '__main__':
-    app.run(debug=True, port=80)
+    app.run(debug=DEBUG, port=80)
+    English.create_table()

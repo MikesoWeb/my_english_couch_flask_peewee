@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" href="static/css/style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 
 </head>
 <body>
@@ -23,14 +23,32 @@
 <!--    <div class="empty_block">-->
 <!--</div>-->
 
+
 {% block content %}
+
 <content class="content">
+
+
+
 
 </content>
 
 {% endblock %}
 
-
+<div class="bottom_block">
+    <div class="main_one">
+    <p class="main_bottom_p">Добавлено сегодня</p>
+        <p>{{ 84 }}</p>
+    </div>
+    <div class="main_two">
+        <p class="main_bottom_p">Количество записей в базе</p>
+        <p>{{ count_words }}</p>
+    </div>
+    <div class="main_three">
+        <p class="main_bottom_p">Новых тестов</p>
+    <p>{{ 12 }}</p>
+    </div>
+</div>
 
 
     <footer class="footer">Все права защищены!<br>
